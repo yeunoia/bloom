@@ -1,13 +1,13 @@
 import { ReactNode, useRef } from "react"
 import { useContentSize } from "./useContentSize"
 
-export const Smear = ({ children }: { children: ReactNode }) => {
+export type SmearProps = {
+  children: ReactNode
+}
+
+export const Smear = ({ children, color }: SmearProps) => {
   const contentRef = useRef<HTMLSpanElement>(null)
   const { w, h } = useContentSize(contentRef)
-
-  if (w === 0 || h === 0) {
-    return null
-  }
 
   return (
     <span
@@ -17,16 +17,18 @@ export const Smear = ({ children }: { children: ReactNode }) => {
         display: "inline-block",
       }}
     >
-      <svg
-        width={w}
-        height={h}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          pointerEvents: "none",
-        }}
-      />
+      {w > 0 && h > 0 && (
+        <svg
+          width={w}
+          height={h}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            pointerEvents: "none",
+          }}
+        />
+      )}
       {children}
     </span>
   )
