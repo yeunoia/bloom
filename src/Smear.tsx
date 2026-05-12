@@ -8,6 +8,10 @@ export type SmearProps = {
    */
   backgroundColor?: string
   /**
+   * @default inherit
+   */
+  color?: string
+  /**
    * @default 4
    */
   paddingX?: number
@@ -20,6 +24,7 @@ export type SmearProps = {
 export const Smear = ({
   children,
   backgroundColor = "#A4E7D5",
+  color = "inherit",
   paddingX = 4,
   paddingY = 2,
 }: SmearProps) => {
@@ -63,7 +68,7 @@ export const Smear = ({
           />
         </svg>
       )}
-      <span style={{ position: "relative" }}>{children}</span>
+      <span style={{ position: "relative", color }}>{children}</span>
     </span>
   )
 }
