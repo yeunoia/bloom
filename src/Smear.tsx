@@ -4,6 +4,10 @@ import { useContentSize } from "./useContentSize"
 export type SmearProps = {
   children: ReactNode
   /**
+   * @default flat
+   */
+  tip?: "round" | "flat"
+  /**
    * @default #A4E7D5
    */
   backgroundColor?: string
@@ -23,6 +27,7 @@ export type SmearProps = {
 
 export const Smear = ({
   children,
+  tip = "flat",
   backgroundColor = "#A4E7D5",
   color = "inherit",
   paddingX = 4,
@@ -30,6 +35,8 @@ export const Smear = ({
 }: SmearProps) => {
   const contentRef = useRef<HTMLSpanElement>(null)
   const { w, h } = useContentSize(contentRef)
+
+  const rx = tip === "flat" ? (h + paddingY) / 2 : 1
 
   return (
     <span
@@ -48,7 +55,7 @@ export const Smear = ({
         >
           <defs>
             <filter id="smear-filter">
-              <feTurbulence baseFrequency={0.003} numOctaves={5} seed={0} />
+              <feTurbulence baseFrequency={0.015} numOctaves={5} seed={0} />
               <feDisplacementMap
                 in="SourceGraphic"
                 scale={8}
@@ -62,7 +69,7 @@ export const Smear = ({
             y={-paddingY}
             width={w + paddingX}
             height={h + paddingY}
-            rx={(h + paddingY) / 2.5}
+            rx={rx}
             fill={backgroundColor}
             filter="url(#smear-filter)"
           />
