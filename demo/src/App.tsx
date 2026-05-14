@@ -1,37 +1,71 @@
+import { useEffect, useState } from "react"
 import { Smear } from "@yeunoia/smear"
 
-const c = {
-  bg: "#0d0d0d",
-  surface: "#141414",
-  border: "#1e1e1e",
-  text: "#d0d0d0",
-  muted: "#555",
+const themes = {
+  dark: {
+    bg: "#0d0d0d",
+    surface: "#141414",
+    border: "#1e1e1e",
+    text: "#d0d0d0",
+    muted: "#555",
+    heading: "#eee",
+    code: "#aaa",
+    blobColors: ["#2a1a3a", "#1a2535", "#3a1a2a", "#1a2a2a", "#3a1a1a"],
+    heroSmear: "#1a3a2a",
+    heroText: "#ccc",
+  },
+  light: {
+    bg: "#fafafa",
+    surface: "#f0f0f0",
+    border: "#e0e0e0",
+    text: "#2a2a2a",
+    muted: "#999",
+    heading: "#111",
+    code: "#555",
+    blobColors: ["#e8d5f5", "#d5e8f5", "#f5d5e8", "#d5f5e8", "#f5e8d5"],
+    heroSmear: "#c8f0dc",
+    heroText: "#333",
+  },
 }
 
-const CodeBlock = ({ children }: { children: string }) => (
-  <pre
-    style={{
-      fontFamily: "monospace",
-      fontSize: 13,
-      color: "#aaa",
-      background: c.surface,
-      border: `1px solid ${c.border}`,
-      borderRadius: 8,
-      padding: "16px 20px",
-      overflowX: "auto",
-      lineHeight: 1.7,
-      margin: 0,
-    }}
-  >
-    {children}
-  </pre>
-)
-
 const names = ["rainbow", "cloud", "dusk", "mist", "ember"]
-const blobColors = ["#2a1a3a", "#1a2535", "#3a1a2a", "#1a2a2a", "#3a1a1a"]
-//                   rainbow    cloud     dusk       mist       ember
 
 export default function App() {
+  const [mode, setMode] = useState<"dark" | "light">(() =>
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light",
+  )
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-color-scheme: dark)")
+    const handler = (e: MediaQueryListEvent) =>
+      setMode(e.matches ? "dark" : "light")
+    mq.addEventListener("change", handler)
+    return () => mq.removeEventListener("change", handler)
+  }, [])
+
+  const c = themes[mode]
+
+  const CodeBlock = ({ children }: { children: string }) => (
+    <pre
+      style={{
+        fontFamily: "monospace",
+        fontSize: 13,
+        color: c.code,
+        background: c.surface,
+        border: `1px solid ${c.border}`,
+        borderRadius: 8,
+        padding: "16px 20px",
+        overflowX: "auto",
+        lineHeight: 1.7,
+        margin: 0,
+      }}
+    >
+      {children}
+    </pre>
+  )
+
   return (
     <main
       style={{
@@ -44,22 +78,14 @@ export default function App() {
       <div
         style={{ maxWidth: 600, margin: "0 auto", padding: "80px 24px 120px" }}
       >
-        {/* hero */}
         <section style={{ marginBottom: 24 }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "baseline",
-              gap: 12,
-              marginBottom: 16,
-            }}
-          >
+          <div style={{ marginBottom: 16 }}>
             <h1
               style={{
                 fontSize: 24,
                 fontWeight: 500,
                 letterSpacing: "-0.02em",
-                color: "#eee",
+                color: c.heading,
                 margin: 0,
               }}
             >
@@ -76,10 +102,11 @@ export default function App() {
           >
             Wrap{" "}
             <Smear
-              backgroundColor="#1a3a2a"
+              backgroundColor={c.heroSmear}
               paddingX={8}
               paddingY={3}
-              color="#ccc"
+              color={c.heroText}
+              tip="round"
             >
               anything
             </Smear>{" "}
@@ -96,26 +123,20 @@ export default function App() {
               borderRadius: 12,
               padding: 32,
               display: "flex",
-              flexWrap: "wrap",
               gap: 12,
+              fontSize: 13,
+              color: c.code,
+              fontFamily: "monospace",
             }}
           >
             {names.map((name, i) => (
               <Smear
                 key={name}
-                backgroundColor={blobColors[i]}
+                backgroundColor={c.blobColors[i]}
                 paddingX={10}
                 paddingY={5}
               >
-                <span
-                  style={{
-                    fontSize: 13,
-                    color: "#aaa",
-                    fontFamily: "monospace",
-                  }}
-                >
-                  {name}
-                </span>
+                {name}
               </Smear>
             ))}
           </div>
