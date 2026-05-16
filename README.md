@@ -1,18 +1,32 @@
 # @yeunoia/smear
-[Wrap anything with smear](https://yeunoia-smear.vercel.app/)
+
+Wrap anything with smear. → [Demo](https://yeunoia-smear.vercel.app/)
+
+## Install
+
+```
+npm install @yeunoia/smear
+```
+
+## Usage
+
+```tsx
+import { Smear } from "@yeunoia/smear";
+
+<Smear>highlighted words</Smear>
+
+```
 
 ## Props
 
-| Prop              | Type                | Default |
-| ----------------- | ------------------- |----|
-| `backgroundColor` | `string`            | `#A4E7D5B3` |
-| `color`           | `string`            | `inherit` |
-| `tip`             | `"flat" \| "round"` | `"round"` |
-| `paddingX`        | `number`            | `4` |
-| `paddingY`        | `number`            | `2` |
-
-`tip="flat"` — highlighter-like edges  
-`tip="round"` — brush-like edges
+| Prop | Type | Default |
+|------|------|---------|
+| `type` | `"box" \| "line"` | `"box"` |
+| `tip` | `"round" \| "square"` | `"round"` |
+| `backgroundColor` | `string` | `"#A4E7D5B3"` |
+| `color` | `string` | `"inherit"` |
+| `paddingX` | `number` | `4` |
+| `paddingY` | `number` | `2` |
 
 ## Requirements
 
