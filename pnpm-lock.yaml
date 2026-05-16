@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       react:
-        specifier: ^18.0.0
+        specifier: '>=17.0.0'
         version: 18.3.1
       react-dom:
-        specifier: ^18.0.0
+        specifier: '>=17.0.0'
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@eslint/js':
@@ -58,8 +58,8 @@ importers:
   demo:
     dependencies:
       '@yeunoia/smear':
-        specifier: workspace:*
-        version: link:..
+        specifier: 0.1.2
+        version: 0.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@types/node':
         specifier: ^25.7.0
@@ -611,6 +611,12 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
+
+  '@yeunoia/smear@0.1.2':
+    resolution: {integrity: sha512-gFv0HPyH6Ah36rvya85jwSsOdPbBAWhNtD5bImT+SFP2CqJ+W5Oc4S8zwhBH6ld412PwtmnZhzzvS0dDCQWLTw==}
+    peerDependencies:
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1970,6 +1976,11 @@ snapshots:
       vite: 5.4.21(@types/node@25.7.0)
     transitivePeerDependencies:
       - supports-color
+
+  '@yeunoia/smear@0.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   acorn-jsx@5.3.2(acorn@8.16.0):
     dependencies:
