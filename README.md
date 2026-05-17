@@ -19,14 +19,15 @@ import { Bloom } from "@yeunoia/bloom";
 
 ## Props
 
-| Prop | Type | Default |
-|------|------|---------|
-| `type` | `"box" \| "line"` | `"box"` |
-| `tip` | `"round" \| "square"` | `"round"` |
-| `backgroundColor` | `string` | `"#A4E7D5B3"` |
-| `color` | `string` | `"inherit"` |
-| `paddingX` | `number` | `4` |
-| `paddingY` | `number` | `2` |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `"box" \| "line"` | `"box"` | `box` wraps the entire element, `line` highlights each line individually |
+| `tip` | `"round" \| "square"` | `"round"` | Shape of the highlight corners |
+| `scale` | `number` | `4` | Smear intensity. Recommended range: 1–10 |
+| `backgroundColor` | `string` | `"#A4E7D5B3"` | Fill color of the highlight |
+| `color` | `string` | `"inherit"` | Text color |
+| `paddingX` | `number` | `4` | Horizontal padding around the highlight (px) |
+| `paddingY` | `number` | `2` | Vertical padding around the highlight (px) |
 
 ## Requirements
 
