@@ -1,6 +1,6 @@
-import { TipType } from "../Bloom"
+import { type BloomProps } from "../Bloom"
 
-export const getRx = (height: number, tip: TipType, paddingY: number) => {
+export const getRx = (height: number, tip: BloomProps["tip"], paddingY: number) => {
   return tip === "round" ? (height + paddingY) / 2 : 1
 }
 

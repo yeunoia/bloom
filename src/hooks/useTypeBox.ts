@@ -1,11 +1,7 @@
 import { type RefObject, useEffect, useState } from "react"
-import { ContentType } from "../Bloom"
+import { type BloomProps } from "../Bloom"
 
-/**
- * @returns
- * the content size of an element.
- */
-export const useTypeBox = (ref: RefObject<HTMLSpanElement>, type: ContentType) => {
+export const useTypeBox = (ref: RefObject<HTMLSpanElement>, type: BloomProps["type"]) => {
   const [size, setSize] = useState({ w: 0, h: 0 })
 
   useEffect(() => {

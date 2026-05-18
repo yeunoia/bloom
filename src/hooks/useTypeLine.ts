@@ -1,5 +1,5 @@
 import { RefObject, useEffect, useState } from "react"
-import { ContentType } from "../Bloom"
+import { type BloomProps } from "../Bloom"
 
 type LineRect = {
   top: number
@@ -11,7 +11,7 @@ type LineRect = {
 export const useTypeLine = (
   anchorRef: RefObject<HTMLSpanElement>,
   textRef: RefObject<HTMLSpanElement>,
-  type: ContentType,
+  type: BloomProps["type"],
 ) => {
   const [rects, setRect] = useState<LineRect[]>([])
 
