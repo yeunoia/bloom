@@ -64,8 +64,8 @@ importers:
   demo:
     dependencies:
       '@yeunoia/bloom':
-        specifier: 0.1.0
-        version: 0.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 0.1.2
+        version: 0.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@types/node':
         specifier: ^25.7.0
@@ -682,8 +682,8 @@ packages:
   '@volar/typescript@2.4.28':
     resolution: {integrity: sha512-Ja6yvWrbis2QtN4ClAKreeUZPVYMARDYZl9LMEv1iQ1QdepB6wn0jTRxA9MftYmYa4DQ4k/DaSZpFPUfxl8giw==}
 
-  '@yeunoia/bloom@0.1.0':
-    resolution: {integrity: sha512-i5OtQUtswaXSl+s/YKOTYDngoODbIr+DrrDOTbnJYd+V2+oa1N44+e+AcTzhxCED/ZdIPD/mNwUNzLA4gKBPMg==}
+  '@yeunoia/bloom@0.1.2':
+    resolution: {integrity: sha512-NEY18sNAVmoUcSN3+98YeVi/dMKALn8Azx04g+nGW1WElD3wEXKLtgAv0w7Lo9JusH7ED4y+ntlVY9EkD3ho2w==}
     peerDependencies:
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
@@ -2319,7 +2319,7 @@ snapshots:
       path-browserify: 1.0.1
       vscode-uri: 3.1.0
 
-  '@yeunoia/bloom@0.1.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@yeunoia/bloom@0.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
