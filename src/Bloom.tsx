@@ -53,17 +53,17 @@ export const Bloom = ({
   paddingY = 2,
 }: BloomProps): ReactElement => {
   const uid = useId()
-  const outerRef = useRef<HTMLSpanElement>(null)
+  const anchorRef = useRef<HTMLSpanElement>(null)
   const textRef = useRef<HTMLSpanElement>(null)
 
-  const { w, h } = useTypeBox(outerRef, type)
-  const { rects } = useTypeLine(outerRef, textRef, type)
+  const { w, h } = useTypeBox(anchorRef, type)
+  const { rects } = useTypeLine(anchorRef, textRef, type)
 
   if (type === "line") {
     return (
       <>
         <span
-          ref={outerRef}
+          ref={anchorRef}
           aria-hidden
           style={{
             display: "inline-block",
@@ -125,7 +125,7 @@ export const Bloom = ({
 
   return (
     <span
-      ref={outerRef}
+      ref={anchorRef}
       style={{
         position: "relative",
         display: "inline-block",

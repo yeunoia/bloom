@@ -13,7 +13,7 @@ export const useTypeLine = (
   textRef: RefObject<HTMLSpanElement>,
   type: BloomProps["type"],
 ) => {
-  const [rects, setRect] = useState<LineRect[]>([])
+  const [rects, setRects] = useState<LineRect[]>([])
 
   useEffect(() => {
     if (type !== "line" || !anchorRef?.current || !textRef?.current) return
@@ -32,7 +32,7 @@ export const useTypeLine = (
         width: rect.width,
         height: rect.height,
       }))
-      setRect(lineRects)
+      setRects(lineRects)
     }
 
     calculate()
