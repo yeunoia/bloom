@@ -23,12 +23,15 @@ const themes = {
 
 export default function App() {
   const [mode, setMode] = useState<"dark" | "light">(() =>
-    window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light",
   )
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-color-scheme: dark)")
-    const handler = (e: MediaQueryListEvent) => setMode(e.matches ? "dark" : "light")
+    const handler = (e: MediaQueryListEvent) =>
+      setMode(e.matches ? "dark" : "light")
     mq.addEventListener("change", handler)
     return () => mq.removeEventListener("change", handler)
   }, [])
@@ -73,7 +76,7 @@ export default function App() {
               backgroundColor={c.rose}
               paddingX={4}
               paddingY={2}
-              scale={2}
+              messiness={2}
               tip="square"
             >
               flying kites
@@ -85,7 +88,7 @@ export default function App() {
               backgroundColor={c.highlight}
               paddingX={4}
               paddingY={2}
-              scale={2}
+              messiness={2}
             >
               that's the kind of person Charlie Brown was
             </Bloom>
@@ -97,7 +100,7 @@ export default function App() {
               backgroundColor={c.rose}
               paddingX={4}
               paddingY={2}
-              scale={3}
+              messiness={3}
               tip="square"
             >
               Good grief, said Charlie Brown, which was the truest thing he ever
@@ -111,7 +114,7 @@ export default function App() {
               backgroundColor={c.highlight}
               paddingX={4}
               paddingY={2}
-              scale={10}
+              messiness={10}
             >
               that in-between feeling was very familiar to him.
             </Bloom>
@@ -128,7 +131,7 @@ export default function App() {
             <Bloom
               paddingX={14}
               paddingY={10}
-              scale={4}
+              messiness={4}
               backgroundColor={c.highlight}
             >
               Sometimes I lie awake at night, and I ask, "Where have I gone
@@ -225,7 +228,7 @@ export default function App() {
           </div>
         </div>
       </main>
-      <Analytics/>
+      <Analytics />
     </>
   )
 }

@@ -3,7 +3,6 @@ import { useTypeBox } from "./hooks/useTypeBox"
 import { useTypeLine } from "./hooks/useTypeLine"
 import { getRectSize, getRx } from "./utils/calculate.utils"
 
-
 export type BloomProps = {
   children: ReactNode
   /**
@@ -18,7 +17,7 @@ export type BloomProps = {
    * @default 4
    * recommended range: 1-10
    */
-  scale?: number
+  messiness?: number
   /**
    * @default #A4E7D5B3
    */
@@ -46,7 +45,7 @@ export const Bloom = ({
   children,
   tip = "round",
   type = "box",
-  scale = 4,
+  messiness = 4,
   backgroundColor = "#A4E7D5B3",
   gradient,
   color = "inherit",
@@ -92,12 +91,23 @@ export const Bloom = ({
                   overflow: "visible",
                 }}
               >
-                <Defs id={filterId} scale={scale} gradientId={gradientId} gradient={gradient} />
+                <Defs
+                  id={filterId}
+                  scale={messiness}
+                  gradientId={gradientId}
+                  gradient={gradient}
+                />
                 <rect
                   x={-paddingX}
                   y={-paddingY}
-                  width={getRectSize(rect.width, rect.height, paddingX, paddingY).width}
-                  height={getRectSize(rect.width, rect.height, paddingX, paddingY).height}
+                  width={
+                    getRectSize(rect.width, rect.height, paddingX, paddingY)
+                      .width
+                  }
+                  height={
+                    getRectSize(rect.width, rect.height, paddingX, paddingY)
+                      .height
+                  }
                   rx={getRx(rect.height, tip, paddingY)}
                   fill={gradient ? `url(#${gradientId})` : backgroundColor}
                   filter={`url(#${filterId})`}
@@ -133,7 +143,12 @@ export const Bloom = ({
             overflow: "visible",
           }}
         >
-          <Defs id={`${uid}-box`} scale={scale} gradientId={`${uid}-box-gradient`} gradient={gradient} />
+          <Defs
+            id={`${uid}-box`}
+            scale={messiness}
+            gradientId={`${uid}-box-gradient`}
+            gradient={gradient}
+          />
           <rect
             x={-paddingX}
             y={-paddingY}
@@ -152,13 +167,27 @@ export const Bloom = ({
   )
 }
 
-const Defs = ({ id, scale, gradientId, gradient }: { id: string; scale: number; gradientId?: string; gradient?: string[] }) => {
+const Defs = ({
+  id,
+  scale,
+  gradientId,
+  gradient,
+}: {
+  id: string
+  scale: number
+  gradientId?: string
+  gradient?: string[]
+}) => {
   return (
     <defs>
       {gradient && gradientId && (
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
           {gradient.map((color, i) => (
-            <stop key={i} offset={`${(i / (gradient.length - 1)) * 100}%`} stopColor={color} />
+            <stop
+              key={i}
+              offset={`${(i / (gradient.length - 1)) * 100}%`}
+              stopColor={color}
+            />
           ))}
         </linearGradient>
       )}

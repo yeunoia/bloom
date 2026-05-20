@@ -46,16 +46,16 @@ Use `gradient` for a multi-color fill:
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `"box" \| "line"` | `"box"` | `box` wraps the entire element, `line` highlights each line individually |
-| `tip` | `"round" \| "square"` | `"round"` | Shape of the highlight corners |
-| `scale` | `number` | `4` | Wobble intensity. Recommended range: 1–10 |
+| Prop              | Type | Default | Description |
+|-------------------|------|---------|-------------|
+| `type`            | `"box" \| "line"` | `"box"` | `box` wraps the entire element, `line` highlights each line individually |
+| `tip`             | `"round" \| "square"` | `"round"` | Shape of the highlight corners |
+| `messiness`            | `number` | `4` | Wobble intensity. Recommended range: 1–10 |
 | `backgroundColor` | `string` | `"#A4E7D5B3"` | Fill color of the highlight |
-| `gradient` | `string[]` | — | Array of colors for a left-to-right gradient fill. Overrides `backgroundColor` |
-| `color` | `string` | `"inherit"` | Text color |
-| `paddingX` | `number` | `4` | Horizontal padding (px) |
-| `paddingY` | `number` | `2` | Vertical padding (px) |
+| `gradient`        | `string[]` | — | Array of colors for a left-to-right gradient fill. Overrides `backgroundColor` |
+| `color`           | `string` | `"inherit"` | Text color |
+| `paddingX`        | `number` | `4` | Horizontal padding (px) |
+| `paddingY`        | `number` | `2` | Vertical padding (px) |
 
 ## Requirements
 
