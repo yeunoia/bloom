@@ -54,11 +54,6 @@
     "svg",
     "bloom"
   ],
-  "pnpm": {
-    "allowBuilds": {
-      "esbuild": true
-    }
-  },
   "license": "MIT",
   "dependencies": {
     "@vercel/analytics": "^2.0.1"
