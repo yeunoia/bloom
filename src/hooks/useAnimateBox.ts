@@ -1,5 +1,6 @@
 import { type RefObject, useEffect } from "react"
 import { BloomProps } from "../Bloom"
+import { getAnimationKeyframes } from "../utils/calculate.utils"
 
 type Props = {
   rectRef: RefObject<SVGRectElement>
@@ -24,12 +25,10 @@ export const useAnimateBox = ({
   useEffect(() => {
     if (!animated || !rectRef.current) return
 
-    rectRef.current.animate(
-      [
-        { clipPath: `inset(0 100% 0 0 round 0 ${radius}px ${radius}px 0)` },
-        { clipPath: `inset(0 0% -${messiness}px 0)` },
-      ],
-      { duration: duration * 1000, delay: delay * 1000, fill: "both" },
-    )
+    rectRef.current.animate(getAnimationKeyframes(radius, messiness), {
+      duration: duration * 1000,
+      delay: delay * 1000,
+      fill: "both",
+    })
   }, [animated, duration, delay, width, height, messiness])
 }
