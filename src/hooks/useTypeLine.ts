@@ -1,5 +1,4 @@
 import { RefObject, useEffect, useState } from "react"
-import { type BloomProps } from "../Bloom"
 
 type LineRect = {
   top: number
@@ -11,12 +10,11 @@ type LineRect = {
 export const useTypeLine = (
   anchorRef: RefObject<HTMLSpanElement>,
   textRef: RefObject<HTMLSpanElement>,
-  type: BloomProps["type"],
 ) => {
   const [rects, setRects] = useState<LineRect[]>([])
 
   useEffect(() => {
-    if (type !== "line" || !anchorRef?.current || !textRef?.current) return
+    if (!anchorRef?.current || !textRef?.current) return
 
     const anchorEl = anchorRef.current
     const textEl = textRef.current
@@ -52,7 +50,7 @@ export const useTypeLine = (
       window.removeEventListener("resize", scheduleCalculate)
       cancelAnimationFrame(animationId)
     }
-  }, [anchorRef, textRef, type])
+  }, [anchorRef, textRef])
 
   return { rects }
 }

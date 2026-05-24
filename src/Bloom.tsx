@@ -1,9 +1,6 @@
-import { ReactElement, ReactNode, useId, useRef } from "react"
-import { useTypeBox } from "./hooks/useTypeBox"
-import { useTypeLine } from "./hooks/useTypeLine"
-import { getRectSize, getRx } from "./utils/calculate.utils"
-import { Defs } from "./components/Defs"
-import { useAnimate } from "./hooks/useAnimate"
+import { ReactElement, ReactNode } from "react"
+import { BloomBox } from "./components/BloomBox"
+import { BloomLine } from "./components/BloomLine"
 
 export type BloomProps = {
   children: ReactNode
@@ -61,7 +58,7 @@ export const Bloom = ({
   type = "box",
   messiness = 4,
   backgroundColor = "#A4E7D5B3",
-  gradient,
+  gradient = [],
   color = "inherit",
   paddingX = 4,
   paddingY = 2,
@@ -69,132 +66,22 @@ export const Bloom = ({
   delay = 0.2,
   duration = 0.6,
 }: BloomProps): ReactElement => {
-  const uid = useId()
-  const anchorRef = useRef<HTMLSpanElement>(null)
-  const textRef = useRef<HTMLSpanElement>(null)
-  const rectRef = useRef<SVGRectElement>(null)
-
-  const { w, h } = useTypeBox(anchorRef, type)
-  const { rects } = useTypeLine(anchorRef, textRef, type)
-
-  useAnimate({
-    rectRef,
+  const bloomProps: Required<Omit<BloomProps, "type">> = {
+    children,
+    tip,
+    messiness,
+    backgroundColor,
+    gradient,
+    color,
+    paddingX,
+    paddingY,
     animated,
     delay,
     duration,
-    tip,
-    messiness,
-    width: w,
-    height: h,
-  })
-
-  if (type === "line") {
-    return (
-      <>
-        <span
-          ref={anchorRef}
-          aria-hidden
-          style={{
-            display: "inline-block",
-            width: 0,
-            height: 0,
-            overflow: "visible",
-            position: "relative",
-            isolation: "isolate",
-          }}
-        >
-          {rects.map((rect, i) => {
-            const filterId = `${uid}-line-${i}`
-            const gradientId = `${uid}-line-gradient-${i}`
-
-            return (
-              <svg
-                key={filterId}
-                width={rect.width}
-                height={rect.height}
-                style={{
-                  position: "absolute",
-                  top: rect.top,
-                  left: rect.left,
-                  pointerEvents: "none",
-                  overflow: "visible",
-                }}
-              >
-                <Defs
-                  id={filterId}
-                  scale={messiness}
-                  gradientId={gradientId}
-                  gradient={gradient}
-                />
-                <rect
-                  x={-paddingX}
-                  y={-paddingY}
-                  width={
-                    getRectSize(rect.width, rect.height, paddingX, paddingY)
-                      .width
-                  }
-                  height={
-                    getRectSize(rect.width, rect.height, paddingX, paddingY)
-                      .height
-                  }
-                  rx={getRx(rect.height, tip, paddingY)}
-                  fill={gradient ? `url(#${gradientId})` : backgroundColor}
-                  filter={`url(#${filterId})`}
-                />
-              </svg>
-            )
-          })}
-        </span>
-        <span ref={textRef} style={{ position: "relative", color }}>
-          {children}
-        </span>
-      </>
-    )
   }
-
-  const { width: rw, height: rh } = getRectSize(w, h, paddingX, paddingY)
-
-  return (
-    <span
-      ref={anchorRef}
-      style={{
-        position: "relative",
-        display: "inline-block",
-        width: "fit-content",
-        isolation: "isolate",
-      }}
-    >
-      {w > 0 && h > 0 && (
-        <svg
-          width={w}
-          height={h}
-          style={{
-            position: "absolute",
-            pointerEvents: "none",
-            overflow: "visible",
-          }}
-        >
-          <Defs
-            id={`${uid}-box`}
-            scale={messiness}
-            gradientId={`${uid}-box-gradient`}
-            gradient={gradient}
-          />
-          <rect
-            ref={rectRef}
-            x={-paddingX}
-            y={-paddingY}
-            width={rw}
-            height={rh}
-            rx={getRx(h, tip, paddingY)}
-            fill={gradient ? `url(#${uid}-box-gradient)` : backgroundColor}
-            filter={`url(#${uid}-box)`}
-          />
-        </svg>
-      )}
-      <span ref={textRef} style={{ position: "relative", color }}>
-        {children}
-      </span>
-    </span>
+  return type === "line" ? (
+    <BloomLine {...bloomProps}>{children}</BloomLine>
+  ) : (
+    <BloomBox {...bloomProps}>{children}</BloomBox>
   )
 }

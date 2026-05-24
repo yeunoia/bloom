@@ -9,7 +9,7 @@ type Props = {
   Pick<BloomProps, "animated" | "delay" | "duration" | "tip" | "messiness">
 >
 
-export const useAnimate = ({
+export const useAnimateBox = ({
   rectRef,
   animated,
   delay,
@@ -27,7 +27,7 @@ export const useAnimate = ({
     rectRef.current.animate(
       [
         { clipPath: `inset(0 100% 0 0 round 0 ${radius}px ${radius}px 0)` },
-        { clipPath: `inset(0 0% -${messiness}px 0 round 0)` },
+        { clipPath: `inset(0 0% -${messiness}px 0)` },
       ],
       { duration: duration * 1000, delay: delay * 1000, fill: "both" },
     )

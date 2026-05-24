@@ -21,6 +21,13 @@ const themes = {
   },
 }
 
+const delay = {
+  start: 0.5,
+  first: 1.2,
+  second: 2.5,
+  third: 3.8,
+}
+
 export default function App() {
   const [mode, setMode] = useState<"dark" | "light">(() =>
     window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -68,6 +75,8 @@ export default function App() {
                 paddingX={10}
                 paddingY={5}
                 animated
+                delay={delay.start}
+                duration={0.8}
                 tip="square"
               >
                 @yeunoia/bloom
@@ -95,6 +104,9 @@ export default function App() {
               paddingX={4}
               paddingY={2}
               messiness={2}
+              animated
+              delay={delay.first}
+              duration={0.8}
             >
               that's the kind of person Charlie Brown was
             </Bloom>
@@ -108,7 +120,9 @@ export default function App() {
               paddingY={2}
               messiness={3}
               tip="square"
-              animated={true}
+              animated
+              delay={delay.second}
+              duration={0.8}
             >
               Good grief, said Charlie Brown, which was the truest thing he ever
               said.
@@ -122,6 +136,9 @@ export default function App() {
               paddingX={4}
               paddingY={2}
               messiness={10}
+              animated
+              delay={delay.third}
+              duration={0.8}
             >
               that in-between feeling was very familiar to him.
             </Bloom>
