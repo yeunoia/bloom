@@ -1,6 +1,6 @@
 import { type RefObject, useEffect, useState } from "react"
 
-export const useTypeBox = (ref: RefObject<HTMLSpanElement>) => {
+export const useTypeBox = (ref: RefObject<HTMLElement>) => {
   const [size, setSize] = useState({ w: 0, h: 0 })
 
   useEffect(() => {

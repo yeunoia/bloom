@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react"
+import { ElementType, ReactElement, ReactNode } from "react"
 import { BloomBox } from "./components/BloomBox"
 import { BloomLine } from "./components/BloomLine"
 
@@ -39,6 +39,10 @@ export type BloomProps = {
    */
   paddingY?: number
   /**
+   * @default span
+   */
+  as?: ElementType
+  /**
    * @default false
    */
   animated?: boolean
@@ -62,6 +66,7 @@ export const Bloom = ({
   color = "inherit",
   paddingX = 4,
   paddingY = 2,
+  as = "span",
   animated = false,
   delay = 0.2,
   duration = 0.6,
@@ -75,6 +80,7 @@ export const Bloom = ({
     color,
     paddingX,
     paddingY,
+    as,
     animated,
     delay,
     duration,

@@ -94,9 +94,9 @@ export default function App() {
               messiness={2}
               tip="square"
             >
-              flying kites
+              flying kites.
             </Bloom>
-            . Every year the kite-eating tree would get him. Every single year.
+            Every year the kite-eating tree would get him. Every single year.
             But he always tried again, because{" "}
             <Bloom
               type="line"
@@ -107,10 +107,11 @@ export default function App() {
               animated
               delay={delay.first}
               duration={0.8}
+              as='em'
             >
-              that's the kind of person Charlie Brown was
+              that's the kind of person Charlie Brown was.{' '}
             </Bloom>
-            . Snoopy didn't worry about things like that. Snoopy lay on top of
+             Snoopy didn't worry about things like that. Snoopy lay on top of
             his doghouse and thought about supper. Lucy sat in her psychiatry
             booth and charged five cents for advice nobody wanted.{" "}
             <Bloom
@@ -157,6 +158,7 @@ export default function App() {
               paddingY={8}
               messiness={4}
               backgroundColor={c.highlight}
+              as='blockquote'
             >
               Sometimes I lie awake at night, and I ask, "Where have I gone
               wrong?" Then a voice says to me, "This is going to take more than

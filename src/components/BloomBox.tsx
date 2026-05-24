@@ -14,12 +14,13 @@ export const BloomBox = ({
   color,
   paddingX,
   paddingY,
+  as: As,
   animated,
   delay,
   duration,
 }: Required<Omit<BloomProps, "type">>): ReactElement => {
   const uid = useId()
-  const anchorRef = useRef<HTMLSpanElement>(null)
+  const anchorRef = useRef<HTMLElement>(null)
   const textRef = useRef<HTMLSpanElement>(null)
   const rectRef = useRef<SVGRectElement>(null)
 
@@ -38,7 +39,7 @@ export const BloomBox = ({
   const { width: rw, height: rh } = getRectSize(w, h, paddingX, paddingY)
 
   return (
-    <span
+    <As
       ref={anchorRef}
       style={{
         position: "relative",
@@ -82,6 +83,6 @@ export const BloomBox = ({
       <span ref={textRef} style={{ position: "relative", color }}>
         {children}
       </span>
-    </span>
+    </As>
   )
 }

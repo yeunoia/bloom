@@ -14,6 +14,7 @@ export const BloomLine = ({
   color,
   paddingX,
   paddingY,
+  as: As,
   animated,
   delay,
   duration,
@@ -36,7 +37,7 @@ export const BloomLine = ({
   })
 
   return (
-    <>
+    <As>
       <span
         ref={anchorRef}
         aria-hidden
@@ -100,6 +101,6 @@ export const BloomLine = ({
       <span ref={textRef} style={{ position: "relative", color }}>
         {children}
       </span>
-    </>
+    </As>
   )
 }

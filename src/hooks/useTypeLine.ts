@@ -8,8 +8,8 @@ type LineRect = {
 }
 
 export const useTypeLine = (
-  anchorRef: RefObject<HTMLSpanElement>,
-  textRef: RefObject<HTMLSpanElement>,
+  anchorRef: RefObject<HTMLElement>,
+  textRef: RefObject<HTMLElement>,
 ) => {
   const [rects, setRects] = useState<LineRect[]>([])
 
