@@ -109,7 +109,7 @@ export default function App() {
               duration={0.8}
               as='em'
             >
-              that's the kind of person Charlie Brown was.{' '}
+              that's the kind of person Charlie Brown was.
             </Bloom>
              Snoopy didn't worry about things like that. Snoopy lay on top of
             his doghouse and thought about supper. Lucy sat in her psychiatry
